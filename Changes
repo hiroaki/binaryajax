@@ -1,0 +1,30 @@
+Changes:
+
+
+2013-02-09
+  - Rename because API changed by librarized.
+
+2013-02-09
+  - Fork from Binary Ajax 0.2 by Jacob Seidelin.
+  - Patch the previous changes to 0.2, for librarized.
+    But keep some features because touched by 0.2.
+
+----------
+
+2009-10-27
+  - ActiveXObject is given priority and used from XHR for dynamic loading,
+    because ie7 doesn't open the local file.
+
+2009-10-17
+  - Import class BinaryFile to window object.
+  - Take back vb section but it should be called execScript().
+
+2009-07-26
+  - Class BinaryAjax was installed in window object.
+  - Take out outside vb section.
+
+2008-12-27
+  - Allows http status '0' that is responsed by in file: protocol.
+  - Disable this.fileSize, cannot use the property in any BinaryAjax
+    callbacked functions because ie6 has an exception.
+  - Fork from Binary Ajax 0.1.5 by Jacob Seidelin
