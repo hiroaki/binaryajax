@@ -5,6 +5,20 @@
  * Licensed under the MPL License [http://www.nihilogic.dk/licenses/mpl-license.txt]
  */
 
+(function (){
+
+	try{
+		execScript(''
+	+ "Function IEBinary_getByteAt(strBinary, offset)\r\n"
+	+ "	IEBinary_getByteAt = AscB(MidB(strBinary,offset+1,1))\r\n"
+	+ "End Function\r\n"
+	+ "Function IEBinary_getLength(strBinary)\r\n"
+	+ "	IEBinary_getLength = LenB(strBinary)\r\n"
+	+ "End Function\r\n",
+	'VBScript');
+	}catch(e){
+		void(0);
+	}
 
 var BinaryFile = function(data, dataOffset, dataLength) {
 	var dataOffset = dataOffset || 0;
@@ -99,10 +113,10 @@ var BinaryAjax = (function() {
 
 	function createRequest() {
 		var http = null;
-		if (window.XMLHttpRequest) {
-			http = new XMLHttpRequest();
-		} else if (window.ActiveXObject) {
+		if (window.ActiveXObject) {
 			http = new ActiveXObject("Microsoft.XMLHTTP");
+		} else if (window.XMLHttpRequest) {
+			http = new XMLHttpRequest();
 		}
 		return http;
 	}
@@ -225,14 +239,6 @@ var BinaryAjax = (function() {
 
 }());
 
-
-document.write(
-	"<script type='text/vbscript'>\r\n"
-	+ "Function IEBinary_getByteAt(strBinary, offset)\r\n"
-	+ "	IEBinary_getByteAt = AscB(MidB(strBinary,offset+1,1))\r\n"
-	+ "End Function\r\n"
-	+ "Function IEBinary_getLength(strBinary)\r\n"
-	+ "	IEBinary_getLength = LenB(strBinary)\r\n"
-	+ "End Function\r\n"
-	+ "</script>\r\n"
-);
+    window.BinaryFile = BinaryFile;
+    window.BinaryAjax = BinaryAjax;
+})();
